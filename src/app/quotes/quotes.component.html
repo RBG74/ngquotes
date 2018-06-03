@@ -1,0 +1,16 @@
+<div class="starter-template">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Quote</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quote of quotes">
+        <td>{{quote.text}}</td>
+        <td>{{quote.author}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
