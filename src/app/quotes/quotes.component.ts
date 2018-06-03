@@ -1,37 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Quote } from '../models/quote';
+import { Component, OnInit } from "@angular/core";
+import { QuotesService } from "../quotes.service";
+import { Quote } from "../models/quote";
 
 @Component({
-  selector: 'app-quotes',
-  templateUrl: './quotes.component.html',
-  styleUrls: ['./quotes.component.css']
+  selector: "app-quotes",
+  templateUrl: "./quotes.component.html",
+  styleUrls: ["./quotes.component.css"]
 })
 export class QuotesComponent implements OnInit {
-
-  quotes: Quote[] = [
-    new Quote("Hello!", "Bob"),
-    new Quote("World", "Jon"),
-  ];
+  quotes: Quote[];
   formQuote: string;
   formAuthor: string;
 
-  constructor() { }
+  constructor(private quotesService: QuotesService) {}
 
   ngOnInit() {
+    this.quotesService.getQuotes().subscribe(quotes => {
+      this.quotes = quotes;
+    });
   }
 
-  addQuote(){
-    console.log(this.formQuote, this.formAuthor);
-    this.quotes.push(
-      new Quote(this.formQuote, this.formAuthor)
-    );
+  addQuote() {
+    this.quotesService
+      .addQuote(new Quote(this.formQuote, this.formAuthor))
+      .subscribe(quotes => (this.quotes = quotes));
     this.resetForm();
   }
 
-  resetForm()
-  {
+  resetForm() {
     this.formQuote = "";
     this.formAuthor = "";
   }
 
+  removeQuote(quote: Quote) {
+    this.quotesService
+      .removeQuote(quote)
+      .subscribe(quotes => (this.quotes = quotes));
+  }
 }

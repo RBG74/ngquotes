@@ -11,7 +11,11 @@
       <tr *ngFor="let quote of quotes">
         <td>{{quote.text}}</td>
         <td>{{quote.author}}</td>
-        <td></td>
+        <td>
+          <button type="button" class="btn btn-sm" (click)="removeQuote(quote)">
+            Delete
+          </button>
+        </td>
       </tr>
       <tr>
         <td>
