@@ -20,4 +20,18 @@ export class QuotesComponent implements OnInit {
   ngOnInit() {
   }
 
+  addQuote(){
+    console.log(this.formQuote, this.formAuthor);
+    this.quotes.push(
+      new Quote(this.formQuote, this.formAuthor)
+    );
+    this.resetForm();
+  }
+
+  resetForm()
+  {
+    this.formQuote = "";
+    this.formAuthor = "";
+  }
+
 }

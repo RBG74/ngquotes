@@ -4,12 +4,27 @@
       <tr>
         <th>Quote</th>
         <th>Author</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let quote of quotes">
         <td>{{quote.text}}</td>
         <td>{{quote.author}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="text" placeholder="Type a new quote here" class="borderless-input" [(ngModel)]="formQuote" />
+        </td>
+        <td>
+          <input type="text" name="author" placeholder="And its author here." class="borderless-input" [(ngModel)]="formAuthor" />
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm" (click)="addQuote()">
+            Add
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
